@@ -283,7 +283,7 @@ func update_boss(dt: float) -> void:
 		boss["attack"] = maxf(0.85, 2.5 - boss_index * 0.06)
 		var count := 7 + int(boss_index / 4)
 		for j in range(count):
-			var a := float(j) * TAU / count + boss["phase"]
+			var a: float = float(j) * TAU / float(count) + float(boss["phase"])
 			bullets.append({"p": boss["p"], "v": Vector2.RIGHT.rotated(a) * (210.0 + boss_index * 8.0), "life": 3.0, "dmg": 12.0 + boss_index, "enemy": true, "color": Color("ff5a9c")})
 		add_spark(boss["p"], Color("ff5a9c"), 16)
 
@@ -421,7 +421,7 @@ func draw_city() -> void:
 		draw_rect(Rect2(rect.position + Vector2(14, 13), Vector2(rect.size.x - 28, 8)), Color("718b9c", 0.55))
 		for wx in range(int(rect.size.x / 25) - 1):
 			for wy in range(int(rect.size.y / 27) - 1):
-				var light := (wx * 11 + wy * 7 + b["seed"]) % 5 != 0
+				var light: bool = (wx * 11 + wy * 7 + int(b["seed"])) % 5 != 0
 				var c := Color("b7e8e7") if light else Color("17263c")
 				draw_rect(Rect2(rect.position + Vector2(19 + wx * 25, 29 + wy * 27), Vector2(12, 13)), c)
 		# Rooftop air conditioners and neon strip.
