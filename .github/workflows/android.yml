@@ -34,6 +34,23 @@ jobs:
         run: |
           godot --headless --path . --editor --quit 2>&1 | tee import.log
           if grep -E 'SCRIPT ERROR|Parse Error|Failed to load script' import.log; then exit 1; fi
+      - name: Diagnosticar ambiente Android
+        shell: bash
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          echo "JAVA_HOME=$JAVA_HOME"
+          echo "SDK instalado:"
+          ls -la "$ANDROID_HOME"
+          echo "Build tools:"
+          ls "$ANDROID_HOME/build-tools"
+          echo "Plataformas:"
+          ls "$ANDROID_HOME/platforms"
+          echo "Java:"
+          java -version
+          echo "Configuração Godot:"
+          cat "$HOME/.config/godot/editor_settings-4.4.tres"
+          echo "Templates:"
+          ls -la "$HOME/.local/share/godot/export_templates/4.4.1.stable" || true
       - name: Gerar APK
         run: |
           mkdir -p build
