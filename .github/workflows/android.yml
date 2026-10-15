@@ -37,7 +37,8 @@ jobs:
       - name: Gerar APK
         run: |
           mkdir -p build
-          godot --headless --path . --export-debug Android build/VOLT-debug.apk
+          godot --headless --path . --editor --quit
+          godot --headless --path . --export-debug Android build/VOLT-debug.apk --verbose
           test -s build/VOLT-debug.apk
       - uses: actions/upload-artifact@v4
         with:
