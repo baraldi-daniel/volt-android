@@ -216,10 +216,10 @@ func _input(event: InputEvent) -> void:
 				look_finger = touch.index
 		else:
 			if touch.index == move_finger:
-					move_finger = -1
+				move_finger = -1
 				move_axis = Vector2.ZERO
-				if touch.index == look_finger:
-					look_finger = -1
+			if touch.index == look_finger:
+				look_finger = -1
 	elif event is InputEventScreenDrag:
 		var drag := event as InputEventScreenDrag
 		if drag.index == move_finger:
